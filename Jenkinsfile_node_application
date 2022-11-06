@@ -18,7 +18,7 @@ pipeline {
 
         stage('test-dev') {
             steps {
-                echo "Testing on DEV..."
+                 test("DEV");
             }
         }
 
@@ -31,7 +31,7 @@ pipeline {
 
         stage('test-int') {
             steps {
-                echo "Testing on INT..."
+                 test("NT");
             }
         }
 
@@ -43,7 +43,7 @@ pipeline {
 
         stage('test-prod') {
             steps {
-                echo "Testing on PROD..."
+                 test("PROD");
             }
         }
     }
@@ -52,4 +52,8 @@ pipeline {
 def deploy(String envinronment){
     echo "Deployment on ${envinronment} environment triggered..."
     build job: "UI tests", parameters: [string(name: "ENVIRONMENT", value: "${envinronment}")]
+}
+
+def test(String envinronment){
+    echo "Testing on ${envinronment} environment triggered..."
 }
