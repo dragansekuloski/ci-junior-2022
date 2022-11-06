@@ -33,6 +33,7 @@ pipeline {
             steps {
                 echo "Testing on INT..."
             }
+        }
 
         stage('deploy-prod') {
             steps {
@@ -46,5 +47,4 @@ pipeline {
             }
         }
     }
-}
 }
