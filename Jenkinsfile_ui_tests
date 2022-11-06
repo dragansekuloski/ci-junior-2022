@@ -15,9 +15,8 @@ pipeline {
                         echo "Testing the ${browsers[i]} browser"
                         echo "Running UI test on ${params.ENVIRONMENT} environment and on ${browsers[i]}"
                     }
-            }
-        }
+                }
+             }
+         }
     }
 }
-
- }
