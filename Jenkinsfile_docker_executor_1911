@@ -4,6 +4,9 @@ pipeline {
         upstream(upstreamProjects: 'dragan-test image base', threshold: hudson.model.Result.SUCCESS)
         // additional trigger is needed to be add on base image changes 
         // with jenkins pipline name 'dragan-test image base'
+        // that trigger on ui is 
+        // Build after other projects are built for "dragan-test image base"
+        //  with option "Trigger only if build is stable"
 
         pollSCM('*/1 * * * *') 
          // triger on changes on feture files are added on junkins 
