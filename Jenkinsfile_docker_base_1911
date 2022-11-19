@@ -1,10 +1,16 @@
 pipeline {
     agent any
+    triggers{ 
+        cron('2 * * * * ')
+         }
 
     stages {
-        stage('Hello') {
+        stage('build docker image') {
             steps {
-                echo 'Hello World from my git'
+                // we would like to build docker image from the Dockerfile_base
+                // for that reason we are using standards shell scrip commads for docker image building
+                // image name is api_test_base which is defined in the Dockerfile_executor which will be looking for api_test_base image from Dockerfile_base
+                sh "docker build -t  api_test_base . Dockerfile_base"
             }
         }
     }
