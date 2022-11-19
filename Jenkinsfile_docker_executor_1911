@@ -1,12 +1,14 @@
 pipeline {
     agent any
-    triggers { pollSCM('*/1 * * * *') }
-    // triger on changes on feture files are added on junkins 
-    // Polling ignores commits in certain paths - include "features"
+    triggers { 
+        pollSCM('*/1 * * * *') 
+         // triger on changes on feture files are added on junkins 
+         // Polling ignores commits in certain paths - include "features"
 
-    // additional trigger is needed to be add on base image changes 
-    // with jenkins pipline name 'dragan-test image base'
-     triggers { upstream(upstreamProjects: 'dragan-test image base', threshold: hudson.model.Result.SUCCESS) }
+        upstream(upstreamProjects: 'dragan-test image base', threshold: hudson.model.Result.SUCCESS)
+        // additional trigger is needed to be add on base image changes 
+        // with jenkins pipline name 'dragan-test image base'
+        }
 
     stages {
         stage('build-docker-image') {
