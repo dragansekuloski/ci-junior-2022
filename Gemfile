@@ -16,7 +16,3 @@ gem "json"
 gem "test-unit"
 gem "mysql2"
 
-
-
-#ghjkhjkasdasdasd
-
