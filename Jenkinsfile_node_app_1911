@@ -100,5 +100,26 @@ def test(String environment){
     // kill the container
         sh "docker rm -f api_test_executor_${environment}"
         sh "ls"
+
+    // to configure report we can check
+    // jenkins plugins can be checked in the 
+    // https://plugins.jenkins.io/ -> https://plugins.jenkins.io/htmlpublisher/
+
+    // in order to generate report script for a given report option
+    // visit http://localhost:8080/pipeline-syntax/
+    // select your plugin
+    // generate your snippet
+
+    publishHTML(
+        [
+            allowMissing: false, 
+            alwaysLinkToLastBuild: false, 
+            keepAll: false, 
+            reportDir: '', 
+            reportFiles: "report_${environment}.html", 
+            reportName: "Test Report ${environment}", 
+            reportTitles: '', 
+            useWrapperFileDirectly: true
+        ])
     }
 }
