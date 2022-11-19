@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'ENVIRONMENT', defaultValue: 'DEV', description: 'Target env for test execution.')
+    }
+
+    triggers { 
+        pollSCM('*/1 * * * *') 
+    }
+
+    stages {
+        stage('build') {
+            steps {
+                echo "Building node app..."
+            }
+        }
+
+        stage('deploy-dev') {
+            steps {
+                echo "Deploying on DEV..."
+
+            }
+        }
+
+        stage('test-dev') {
+            steps {
+                 echo "Testing on DEV..."
+            }
+        }
+
+        stage('deploy-int') {
+            steps {
+                echo "Deploying on INT..."
+
+            }
+        }
+
+        stage('test-int') {
+            steps {
+                 echo "Testing on INT..."
+            }
+        }
+
+        stage('deploy-prod') {
+            steps {
+                echo "Deploying on PROD..."
+
+            }
+        }
+
+        stage('test-prod') {
+            steps {
+                 echo "Testing on PROD..."
+            }
+        }
+    }
+}
