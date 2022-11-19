@@ -2,6 +2,10 @@ pipeline {
     agent any
     parameters {
         string(name: 'ENVIRONMENT', defaultValue: 'DEV', description: 'Target env for test execution.')
+        // after jenkins job is once runned we can see for the next time "run with paramters"
+        // additionally in the config file we can see "This project is parameterised"
+        // also is added default value "DEV" and description
+        // basically all informations from this jenkins file are pulled in the jenkins configuration
     }
 
     triggers { 
@@ -11,7 +15,14 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                echo "Running UI test on ${params.ENVIRONMENT} environment"
+                script {
+                    def browsers = ['chrome', 'firefox']
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                        echo "Running UI test on ${params.ENVIRONMENT} environment"
+
+                    }
+                }
             }
         }
     }
