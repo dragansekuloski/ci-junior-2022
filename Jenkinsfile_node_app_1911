@@ -22,7 +22,9 @@ pipeline {
 
         stage('test-dev') {
             steps {
-                 echo "Testing on DEV..."
+                 script {
+                    test("DEV")
+                }
             }
         }
 
@@ -36,7 +38,9 @@ pipeline {
 
         stage('test-int') {
             steps {
-                 echo "Testing on INT..."
+                script {
+                    test("INT")
+                }
             }
         }
 
@@ -50,7 +54,9 @@ pipeline {
 
         stage('test-prod') {
             steps {
-                 echo "Testing on PROD..."
+                script {
+                    test("PROD")
+                }
             }
         }
     }
@@ -58,6 +64,13 @@ pipeline {
 
 def deploy(String environment){
     echo "Deploying on ${environment} environment..."
+    // On this stage we would like to trigger one job
+    //  trigger UI tests in pipeline defined before "dragan-ui-test"
+    // that pipeline has parameters so we need to set it up as well 
     build job: "dragan-ui-test", 
         parameters: [string(name: 'ENVIRONMENT', value: "${environment}")] 
+}
+
+def test(String environment){
+    echo "Testing on ${environment} environment..."
 }
