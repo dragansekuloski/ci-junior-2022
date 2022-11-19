@@ -73,4 +73,14 @@ def deploy(String environment){
 
 def test(String environment){
     echo "Testing on ${environment} environment..."
+    //trigger executor container
+    sh "docker run --network=host -d -t --name api_test_executor_${environment} api_test_executor"
+    // execute specific comand for the running container
+    sh "docker exec api_test_executor_${environment} cucumber --tags=@${environment} --format html --out test-output/report.html"
+    // how to get report "docker cp" copy the files
+    // from docker host to the source machine
+    sh "docker cp api_test_executor_${environment}:/usr/src/api-tests/test-output/report.html report_${environment}.html"
+    // kill the container
+    sh "docker rm -f api_test_executor_${environment}"
+
 }
