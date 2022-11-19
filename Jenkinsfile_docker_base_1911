@@ -3,7 +3,7 @@ pipeline {
      triggers { pollSCM('*/1 * * * *') }
 
     stages {
-        stage('build docker image') {
+        stage('build-docker-image') {
             steps {
                 // we would like to build docker image from the Dockerfile_base
                 // for that reason we are using standards shell scrip commads for docker image building
