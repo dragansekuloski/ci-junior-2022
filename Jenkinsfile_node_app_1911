@@ -121,5 +121,9 @@ def test(String environment){
             reportTitles: '', 
             useWrapperFileDirectly: true
         ])
+
+        // in order to see the reports in the Jenkins
+        // it is needed to https://stackoverflow.com/questions/52378579/jenkins-cant-view-image-in-html-report
+        // or in the https://stackoverflow.com/questions/35783964/jenkins-html-publisher-plugin-no-css-is-displayed-when-report-is-viewed-in-j/35785788#35785788
     }
 }
