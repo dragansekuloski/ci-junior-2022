@@ -17,8 +17,9 @@ pipeline {
 
         stage('deploy-dev') {
             steps {
-                echo "Deploying on DEV..."
-
+                script {
+                    deploy("DEV")
+                }
             }
         }
 
@@ -30,8 +31,9 @@ pipeline {
 
         stage('deploy-int') {
             steps {
-                echo "Deploying on INT..."
-
+                script {
+                    deploy("INT")
+                }
             }
         }
 
@@ -43,8 +45,9 @@ pipeline {
 
         stage('deploy-prod') {
             steps {
-                echo "Deploying on PROD..."
-
+                script {
+                    deploy("PROD")
+                }
             }
         }
 
@@ -54,4 +57,10 @@ pipeline {
             }
         }
     }
+}
+
+def deploy(String environment){
+    echo "Deploying on ${environment} environment..."
+    build job: "dragan-ui-test", 
+        parameters: [string(name: 'ENVIRONMENT', value: "${environment}")] 
 }
