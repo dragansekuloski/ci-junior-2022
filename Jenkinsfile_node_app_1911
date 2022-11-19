@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    parameters {
-        string(name: 'ENVIRONMENT', defaultValue: 'DEV', description: 'Target env for test execution.')
-    }
 
     triggers { 
         pollSCM('*/1 * * * *') 
