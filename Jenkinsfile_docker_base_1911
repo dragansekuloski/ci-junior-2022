@@ -1,6 +1,10 @@
 pipeline {
     agent any
+    // also will be present in the build triggers in jenkins 
      triggers { pollSCM('*/1 * * * *') }
+
+    //  to make trigger only for a listening of a specific file change
+    // in the GIT section in Jenkins configurations chclick on add on additional behavious and choose "Polling ignores commits in certain paths" then specify the file "Gemfile" in our case
 
     stages {
         stage('build-docker-image') {
